@@ -24,6 +24,19 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Add Hirb gem for console databse layout
+gem 'hirb', '0.7.3'
+# Use Twitter Bootstrap library for front-end UI and layout
+gem 'bootstrap-sass', '3.3.7'
+# Use Font Awesome Sass gem for adding icons
+gem 'font-awesome-sass', '4.6.2'
+# Use Devise for user authentication
+gem 'devise', '4.2.0'
+# Use to create pages instead of lists
+gem 'will_paginate', '3.1.5'
+# Use Bootstrap gem for pagination
+gem 'bootstrap-will_paginate'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -42,6 +55,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  # Use the PostgreSQL gem for Heroku production servers
+  gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
