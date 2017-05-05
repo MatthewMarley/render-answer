@@ -1,0 +1,35 @@
+git pull git@github.com:MatthewMarley/render-answer.git master
+
+Beta Blog
+	- Users should be able to create blog posts.
+	- Blog posts should have a title, and then a description, and tags (for categories).
+	- Users should be able to leave comments on blog posts.
+	- There should be different categories for languages/frameworks/gems/etc.
+	- Users must have admin option.
+	- Categories can only be created by admins.
+	- When signing up you will automatically log in.
+	- Users should not be able to edit/delete/update others blog posts or comments (unless admin).
+	- Flash messages must be included in partial.
+	- DNR.
+	- Have pagination.
+	- Validations in models.
+	- Code must be commented.
+
+
+Gems
+Nice to have features
+	- Users should be able to highlight portions of the text to show importance.
+	- Dynamic Tags at bottom
+	- Users have avatars
+	- Be able to follow others
+
+
+
+Users table: User.id, email, username, password, admin (false/true), timestamps
+Profile table: Profile.id, user_id (FK), first_name, last_name, bio, timestamps
+Article table: Article_id, user_id (FK), title, description, timestamps
+Category table: Category_id, name, timestamps
+article_categories: article_id (FK), category_id (FK)
+Comment table: Comment_id, user_id (FK), article_id (FK)
+
+
