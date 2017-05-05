@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     root to: 'pages#home'
     get '/about', to: 'pages#about'
 
-    resources :users
+    resources :users, only: [:index, :show]
 
     resources :articles
 end
