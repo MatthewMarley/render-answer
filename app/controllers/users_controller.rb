@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to Render Answer, #{@user.username}! Go to Your Profile to complete your profile"
+      session[:user_id] = @user.id
+      flash[:success] = "Welcome to Render Answer, #{@user.username}!"
       redirect_to user_path(@user)
     else
       flash[:danger] = "There was problem creating your account"
@@ -31,6 +32,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @user = User.find(params[:id])
+    @user_articles = @user.articles
   end
   
   def index
