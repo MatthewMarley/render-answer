@@ -1,6 +1,25 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # has_many + dependent means if a user is removed from the db, 
+  # all associated articles will also be removed
+  has_many :articles, dependent: :destroy
+  
+  # Store details in lowercase to make it easier to check for unique
+  # usernames and passwords
+  before_save { 
+    self.email = email.downcase
+    self.username = username.downcase
+  }
+  
+  validates :username, presence: true,
+                      uniqueness: { case_sensitive: false },
+                      length: { minimum: 3, maximum: 20 }
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+  validates :email, presence: true, length: { maximum: 100 },    
+                      uniqueness: { case_sensitive: false },
+                      format: { with: VALID_EMAIL_REGEX }      
+                      
+  has_secure_password
+  
 end

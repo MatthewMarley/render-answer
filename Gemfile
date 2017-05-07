@@ -30,8 +30,6 @@ gem 'hirb', '0.7.3'
 gem 'bootstrap-sass', '3.3.7'
 # Use Font Awesome Sass gem for adding icons
 gem 'font-awesome-sass', '4.6.2'
-# Use Devise for user authentication
-gem 'devise', '4.2.0'
 # Use to create pages instead of lists
 gem 'will_paginate', '3.1.5'
 # Use Bootstrap gem for pagination
