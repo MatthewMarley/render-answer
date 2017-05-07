@@ -19,7 +19,14 @@ class User < ApplicationRecord
                       
   has_secure_password
   
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: :default_image
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  
   def full_name
+  end
+  
+  def default_image
+    "pepe.png"
   end
   
 end
