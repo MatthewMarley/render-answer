@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="well">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="text-center"><%= @user.username %></h1>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="well">
+            <h2>Description</h2>
+            <p><%= @user.description %></p>
+          </div>
+          <div class="well">
+            <h2>Articles</h2>
+            <% if @user_articles.count >= 1 %>
+              <% @user_articles.each do |article| %>
+                <div class="col-md-10 col-md-offset-2">
+                  <div class="well">
+                    <h2><%= link_to article.title, article_path(article) %></h2>
+                    <p><%= article.description %></p>
+                  </div>
+                </div>
+                <% end %>
+            <% else %>
+              <p class="text-center">This user has no articles. </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
