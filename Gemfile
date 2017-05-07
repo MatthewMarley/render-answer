@@ -34,6 +34,8 @@ gem 'font-awesome-sass', '4.6.2'
 gem 'will_paginate', '3.1.5'
 # Use Bootstrap gem for pagination
 gem 'bootstrap-will_paginate'
+# Use paperclip gem for image upload
+gem 'paperclip', '4.3.6'
 
 
 # Use Capistrano for deployment

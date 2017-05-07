@@ -1,15 +1,21 @@
 <div class="container">
   <div class="well">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <h1 class="text-center"><%= @user.username %></h1>
-        <div class="col-md-8 col-md-offset-2">
-          <div class="well">
-            <h2>Description</h2>
+        <div class="col-md-3 text-center">
+          <% if !@user.avatar %>
+            <%= image_tag 'pepe.png', class:"avatar-show-img" %>
+          <% else %>
+            <%= image_tag @user.avatar.url, class:"avatar-show-img" %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+        <h1><%= @user.username %> <span><%= image_tag user_trophy_icon, class: "show-user-trophy-icon" %></span></h1>
+          <div class="well profile-block">
+            <h3>Bio</h3>
             <p><%= @user.description %></p>
           </div>
-          <div class="well">
-            <h2>Articles</h2>
+          <div class="well profile-block">
+            <h3>Articles</h3>
             <% if @user_articles.count >= 1 %>
               <% @user_articles.each do |article| %>
                 <div class="col-md-10 col-md-offset-2">
@@ -23,7 +29,6 @@
               <p class="text-center">This user has no articles. </p>
             <% end %>
           </div>
-        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,31 @@
+$navbar-default-bg: black;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 .form-group {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.avatar-show-img {
+  width: 128px;
+  height: 128px;
+  border: 1px solid #2e6da4;
+  border-radius: 4px;
+}
+
+.well.profile-block {
+  background-color: #c2c2d6;
+  h3 {
+  margin-top: 0;
+  }
+}
+
+.show-user-trophy-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  text-align: center;  
 }
