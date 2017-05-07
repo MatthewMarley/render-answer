@@ -1,11 +1,16 @@
 <div class="container">
-  <div class="well">
+  <div class="well user-profile-block">
   <div class="row">
         <div class="col-md-3 text-center">
           <% if !@user.avatar %>
             <%= image_tag 'pepe.png', class:"avatar-show-img" %>
           <% else %>
             <%= image_tag @user.avatar.url, class:"avatar-show-img" %>
+          <% end %>
+          </br>
+          </br>
+          <% if @user == current_user %>
+            <%= link_to 'Edit Profile', edit_user_path(@user) %>
           <% end %>
         </div>
         <div class="col-md-6">

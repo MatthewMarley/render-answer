@@ -2,6 +2,14 @@ $navbar-default-bg: black;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+.navbar-default {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 
 .form-group {
   padding-left: 15px;
@@ -13,6 +21,17 @@ $navbar-default-bg: black;
   height: 128px;
   border: 1px solid #2e6da4;
   border-radius: 4px;
+  background-color: white;
+}
+
+.avatar-index-img {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+}
+
+.well.user-profile-block {
+  margin-top: 50px;
 }
 
 .well.profile-block {
@@ -22,10 +41,18 @@ $navbar-default-bg: black;
   }
 }
 
+.white-bg {
+  background-color: white;
+}
+
 .show-user-trophy-icon {
   display: inline-block;
   width: 40px;
   height: 40px;
   border-radius: 4px;
   text-align: center;  
+}
+
+.list-unstyled {
+  list-style: none;
 }

@@ -22,6 +22,7 @@ Nice to have features
 	- Dynamic Tags at bottom
 	- Users have avatars
 	- Be able to follow others
+	- Sign in with username or email
 
 
 

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">The Contributors</h1>
+      <p class="text-center">Welcome to the RenderAnswer community. Check out their profiles to see what they've contributed!</p>
+      <ul class="list-unstyled">
+        <% @users.each do |user| %>
+          <li>
+            <div class="well row <%= cycle('white-bg', '') %>"> 
+              <div class="col-sm-4">
+                <% if !user.avatar %>
+                  <%= image_tag 'pepe.png', class:"avatar-index-img" %>
+                <% else %>
+                  <%= image_tag user.avatar, class:"avatar-index-img" %>
+                <% end %>
+              </div>
+              <h2><%= link_to user.username, user_path(user) %></h2>
+              <%= pluralize(user.articles.count, "article") if user.articles.any? %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
