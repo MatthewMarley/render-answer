@@ -2,6 +2,14 @@ $navbar-default-bg: black;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+.navbar-default {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 
 .form-group {
   padding-left: 15px;
@@ -13,13 +21,29 @@ $navbar-default-bg: black;
   height: 128px;
   border: 1px solid #2e6da4;
   border-radius: 4px;
+  background-color: white;
 }
 
-.well.profile-block {
+.avatar-index-img {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+}
+
+.well.user-profile-block {
+  margin-top: 50px;
+  border: 1px solid black;
+}
+
+.well.description-block {
   background-color: #c2c2d6;
   h3 {
   margin-top: 0;
   }
+}
+
+.white-bg {
+  background-color: white;
 }
 
 .show-user-trophy-icon {
@@ -28,4 +52,28 @@ $navbar-default-bg: black;
   height: 40px;
   border-radius: 4px;
   text-align: center;  
+}
+
+.list-unstyled {
+  padding-top: 5px;  
+  display: inline-block;
+  width: 100%;
+  bottom: 0px; 
+  left: 0px; 
+  text-align: center; 
+}
+
+.article-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.article-body {
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.article-meta-details {
+  color: black;
 }

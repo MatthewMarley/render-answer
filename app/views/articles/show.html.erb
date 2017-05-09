@@ -1,0 +1,15 @@
+<h2 align="center" class="article-title"><%= @article.title %></h2>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <h4>Description</h4>
+      <%= @article.description %>
+    </div>
+    <div class="col-md-12 text-center">
+      <small>
+        Created by: <%= link_to @article.user.username, user_path(@article.user) %>,
+        <%= time_ago_in_words(@article.created_at) %> ago
+      </small>
+    </div>
+  </div>
+</div>
