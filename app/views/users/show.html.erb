@@ -15,20 +15,40 @@
         </div>
         <div class="col-md-6">
         <h1><%= @user.username %> <span><%= image_tag user_trophy_icon, class: "show-user-trophy-icon" %></span></h1>
-          <div class="well profile-block">
+        <hr>
+          <div class="well description-block">
             <h3>Bio</h3>
             <p><%= @user.description %></p>
           </div>
-          <div class="well profile-block">
+          <div class="well description-block">
             <h3>Articles</h3>
             <% if @user_articles.count >= 1 %>
               <% @user_articles.each do |article| %>
-                <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                <div class="col-md-10 col-md-offset-1">
                   <div class="well">
-                    <h2><%= link_to article.title, article_path(article) %></h2>
-                    <p><%= article.description %></p>
+                    <div class="article-title">
+                      <%= link_to article.title, article_path(article) %>
+                    </div>
+                    <div class="article-meta-details">
+                      <%= truncate(article.description, length: 100) %>
+                    </div>
+                    <div class="article-meta-details">
+                      <small>Created by: <%= article.user.username if article.user%>,
+                      <%= time_ago_in_words(article.created_at) %> ago
+                      </small>
+                    </div>
+                    <% if logged_in? && (current_user == article.user || current_user.admin?) %>
+                      <div class="article-actions">
+                        <%= link_to 'Edit this article', edit_article_path(article), class: 'btn btn-xs btn-primary' %>
+                        <%= link_to 'Delete this article', article_path(article), method: :delete, 
+                                                data: {confirm: "Are you sure you want to delete the article?"}, 
+                                                class: 'btn btn-xs btn-danger' %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
+              </div>
                 <% end %>
             <% else %>
               <p class="text-center">This user has no articles. </p>

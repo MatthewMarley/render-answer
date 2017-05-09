@@ -32,9 +32,10 @@ $navbar-default-bg: black;
 
 .well.user-profile-block {
   margin-top: 50px;
+  border: 1px solid black;
 }
 
-.well.profile-block {
+.well.description-block {
   background-color: #c2c2d6;
   h3 {
   margin-top: 0;
@@ -54,5 +55,25 @@ $navbar-default-bg: black;
 }
 
 .list-unstyled {
-  list-style: none;
+  padding-top: 5px;  
+  display: inline-block;
+  width: 100%;
+  bottom: 0px; 
+  left: 0px; 
+  text-align: center; 
+}
+
+.article-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.article-body {
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.article-meta-details {
+  color: black;
 }
