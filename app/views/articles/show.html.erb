@@ -1,15 +1,69 @@
-<h2 align="center" class="article-title"><%= @article.title %></h2>
+<div class="container">
+<h1 align="center" class="article-title"><%= @article.title %></h1>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
       <h4>Description</h4>
+      <hr>
       <%= @article.description %>
+      <hr>
+      <div style="display: inline">
+        <small>
+          By: <%= link_to @article.user.username, user_path(@article.user) %>,
+          <%= time_ago_in_words(@article.created_at) %> ago
+        </small>
+      <% if (@article.user_id == current_user.id || current_user.admin?) %>
+      <div style="float:right;">
+          <%= link_to edit_article_path(@article), class:"btn btn-xs btn-default" do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to article_comment_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
+            <i class="fa fa-trash-o"></i>
+          <% end %>
+          </div>
+        <% end %>
     </div>
-    <div class="col-md-12 text-center">
-      <small>
-        Created by: <%= link_to @article.user.username, user_path(@article.user) %>,
-        <%= time_ago_in_words(@article.created_at) %> ago
-      </small>
     </div>
   </div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= link_to "Leave a comment", new_article_comment_path(@article), class: 'btn btn-xs btn-primary' %>
+  </div>
+  </br>
+  <div class="col-md-8 col-md-offset-2">
+  </br>
+  <h4>Comments</h4>
+  <% if @article.comments.count > 0 %>
+    <% @article.comments.each do |com| %>
+        <div class="well white-bg comment-well">
+            <%= com.comment %>
+            </br>
+            </br>
+            <span>
+            <div style="display: inline">
+            <small>
+              By: <%= link_to com.user.username, user_path(com.user) %>,
+              <%= time_ago_in_words(com.created_at) %> ago
+            </small>
+            <% if (com.user_id == current_user.id || current_user.admin?) %>
+            <div style="float:right;">
+                <%= link_to edit_article_comment_path(@article), class:"btn btn-xs btn-default" do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+                <%= link_to article_comment_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
+                  <i class="fa fa-trash-o"></i>
+                <% end %>
+                </div>
+            <% end %>
+          </div>
+        </span>
+      </div>
+    <% end %>
+    <% else %>
+      <p class="text-center">This article has no comments.</p>
+  <% end %>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= link_to "Leave a comment", new_article_comment_path(@article), class: 'btn btn-xs btn-primary' %>
+  </div>
+</div>
 </div>

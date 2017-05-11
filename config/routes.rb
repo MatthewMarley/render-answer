@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
 
-    resources :articles
+    resources :articles do
+        resources :comments
+    end
+     
     resources :categories
+    
+
 end

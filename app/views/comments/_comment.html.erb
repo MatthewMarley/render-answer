@@ -1,0 +1,10 @@
+<%= form_for @comment, url: article_comment_path(article_id: @article.id), :html => {class: "form-horizontal", role: "form"} do |f| %>
+  <div class="form-group">
+      <%= f.label :comment %>
+      <%= f.text_area :comment, rows: 10, class:"form-control", placeholder: "Enter your comment here..." %>
+  </div>
+  
+  <div class="form-group">
+      <%= f.submit "Post Comment", class: 'btn btn-primary' %>
+  </div>
+<% end %>

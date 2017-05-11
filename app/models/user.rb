@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # has_many + dependent means if a user is removed from the db, 
   # all associated articles will also be removed
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   # Store details in lowercase to make it easier to check for unique
   # usernames and passwords
