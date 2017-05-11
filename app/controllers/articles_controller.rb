@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
       flash[:success] = "Your article has been posted!"
       redirect_to article_path(@article)
     else
+      flash[:danger] = "Your article has not been posted!"
       render 'new'
     end
   end

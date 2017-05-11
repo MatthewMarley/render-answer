@@ -79,5 +79,10 @@ $navbar-default-bg: black;
 }
 
 .navbar-default .navbar-brand {
+  color: white;
   opacity: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
 }
