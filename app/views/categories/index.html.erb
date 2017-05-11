@@ -3,7 +3,11 @@
         <% @categories.each do |category| %>
             <div class="well">
                 <strong>Category: </strong>
-                <%= category.name %>
+                <%= category.name %> </br></br>
+                <%= link_to "Edit Category", edit_category_path(category), class: 'btn btn-warning btn-xs' %>
+                <%= link_to "Show Category", category_path(category), class: 'btn btn-primary btn-xs' %>
+                <%= link_to "Delete Category", category_path(category), class: 'btn btn-danger btn-xs', 
+                             method: :delete, data: {confirm: "Are you sure?"} %>
             </div>
         <% end %>
     </div>
