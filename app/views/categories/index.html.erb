@@ -1,15 +1,23 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
         <strong><h1 align="center">Categories Page</h1></strong>
-        <p align="center"><%= link_to "Create a New Category", new_category_path %></p>
+        <p class="text-center">Click on one of the categories to see all related articles</p>
+        </br>
+        <% if current_user.admin? %>
+            <p align="center"><%= link_to "Create a New Category", new_category_path %></p>
+        <% end %>
         <% @categories.each do |category| %>
-            <div class="well">
-                <strong>Category: </strong>
-                <%= category.name %> </br></br>
-                <%= link_to "Edit Category", edit_category_path(category), class: 'btn btn-warning btn-xs' %>
-                <%= link_to "Show Category", category_path(category), class: 'btn btn-primary btn-xs' %>
-                <%= link_to "Delete Category", category_path(category), class: 'btn btn-danger btn-xs', 
-                             method: :delete, data: {confirm: "Are you sure?"} %>
+            <div class="well <%= cycle('','white-bg') %>">
+                <h2 style="margin-top: 2px;" class="text-center"><%= link_to category.name, category_path(category) %></h2>
+                <hr class="hr-index">
+                <p class="text-center"><%= pluralize(category.articles.count, "article") %></p>
+                <% if current_user.admin? %>
+                    </br></br>
+                    <%= link_to "Edit Category", edit_category_path(category), class: 'btn btn-warning btn-xs' %>
+                    <%= link_to "Show Category", category_path(category), class: 'btn btn-primary btn-xs' %>
+                    <%= link_to "Delete Category", category_path(category), class: 'btn btn-danger btn-xs', 
+                                 method: :delete, data: {confirm: "Are you sure?"} %>
+                <% end %>
             </div>
         <% end %>
     </div>

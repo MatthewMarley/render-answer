@@ -3,7 +3,7 @@
     <div class="col-md-8 col-md-offset-2">
       <h1>Leave a comment..</h1>
       <div class="well">
-        <%= form_for @comment, url: article_comments_path(article_id: @article.id), 
+        <%= form_for @comment, url: article_comments_path(article_id: @article), 
         :html => {class: "form-horizontal", role: "form"}, method: :post do |f| %>
           <div class="form-group">
               <%= f.label :comment %>
