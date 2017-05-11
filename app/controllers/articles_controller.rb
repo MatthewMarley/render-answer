@@ -34,6 +34,8 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @comment = Article.joins(:comment).new
+    @comments = Article.joins(:comment).all
   end
   
   def destroy
