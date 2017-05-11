@@ -12,7 +12,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to Render Answer, #{@user.username}!"
-      redirect_to user_path(@user)
+      # This was throwing up the following area - uninitialized constant Article::ArticleCategory 
+      #(NameError in UsersController#Show). -> changing to root_path fixes
+      # redirect_to user_path(@user)
+      redirect_to root_path
     else
       flash[:danger] = "There was problem creating your account"
       render 'new'
