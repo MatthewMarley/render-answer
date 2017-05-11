@@ -8,12 +8,6 @@
     <%= f.text_area :description, rows: 10, class:"form-control", placeholder: "Description" %>
   </div>
   
-  <div class="form-group">
-    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-      <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-    <% end %>
-  </div>
-  
   <div class="actions form-group">
     <%= f.submit(@article.new_record? ? "Post Article" : "Edit Article", class: 'btn btn-success') %>
   </div>
