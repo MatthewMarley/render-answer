@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # all associated articles will also be removed
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  has_many :friendships
+  has_many :friends, through: :friendships
   
   # Store details in lowercase to make it easier to check for unique
   # usernames and passwords
@@ -28,6 +31,10 @@ class User < ApplicationRecord
   
   def default_image
     "pepe.png"
+  end
+  
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
   end
   
 end

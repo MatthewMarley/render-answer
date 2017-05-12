@@ -36,6 +36,8 @@ gem 'will_paginate', '3.1.5'
 gem 'bootstrap-will_paginate'
 # Use paperclip gem for image upload
 gem 'paperclip', '4.3.6'
+# Use acts_as_votable for voting
+gem 'acts_as_votable', '~> 0.10.0'
 
 
 # Use Capistrano for deployment
