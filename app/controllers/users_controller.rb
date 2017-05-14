@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
 
     else
-      flash[:danger] = "There was problem creating your account"
+      flash[:danger] = @user.errors.full_messages.join(", ")
       render 'new'
     end
   end

@@ -29,6 +29,11 @@ class User < ApplicationRecord
   def full_name
   end
   
+  def related_articles
+    friends_articles = friends.map{|f| f.articles}
+    return (articles.to_a + friends_articles).flatten
+  end
+  
   def default_image
     "pepe.png"
   end

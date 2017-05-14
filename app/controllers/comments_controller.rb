@@ -17,8 +17,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Your comment has been posted"
       redirect_to article_path(@comment.article)
     else
-      flash[:danger] = "There was a problem posting your comment"
-      render 'new'
+      flash[:danger] = @comment.errors.full_messages.join(", ")
+      redirect_to :back
     end
   end
   

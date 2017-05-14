@@ -43,6 +43,7 @@ $navbar-default-bg: black;
 
 .well.description-block {
   background-color: #c2c2d6;
+  border: 1px solid #2e6da4;
   h3 {
   margin-top: 0;
   }
@@ -143,4 +144,14 @@ $navbar-default-bg: black;
 
 .btn-add-friend {
   margin-top: 36px;
+}
+
+.well-home-feed {
+  padding-bottom: 0px;
+  padding-top: 5px;
+}
+
+.well-home-intro{
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
