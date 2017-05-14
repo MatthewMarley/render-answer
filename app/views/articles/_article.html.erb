@@ -1,0 +1,51 @@
+<% if obj.count > 0 %>
+  <div class="col-md-8 col-md-offset-2">
+    <% obj.each do |article| %>
+      <h4><%= link_to article.user.username, user_path(article.user) %> has posted an article!</h4>
+      <div class="well <%= cycle('', 'white-bg')%> well-home-feed">
+        <ul class="list-unstyled">
+          <li><h4><%= link_to article.title, article_path(article) %></h4></li>
+          <hr class="hr-index">
+          <li><%= truncate(article.description, length: 30) %></li>
+          </br>
+          <li class="text-left"><small>
+            By: <%= link_to article.user.username, user_path(article.user) %>,
+                <%= time_ago_in_words(article.created_at) %> ago
+          </small></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+    <h4 class="text-center">Welcome to Render Answer, <%= current_user.username %>!</h4>
+    </br>
+    <p class="text-center">Start by completing your profile then head over to the community to 
+      add some friends and start viewing articles in your feed.</p>
+    <div class="col-md-6">
+      <div class="well well-home-intro">
+        <ul class="list-unstyled">
+          <%= link_to edit_user_path(current_user), class:"btn btn-primary btn-lg" do %>
+            <li>Create Your Profile</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well well-home-intro">
+        <ul class="list-unstyled">
+          <%= link_to users_path, class:"btn btn-success btn-lg" do %>
+            <li>Meet The Community</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well">
+        <ul class="list-unstyled">
+          <%= link_to articles_path, class:"btn btn-danger btn-lg" do %>
+            <li>Read The Posts</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
