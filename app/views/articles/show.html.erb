@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
-      <h4>Description</h4>
+      <h4>Description - <%= pluralize(@article.get_upvotes.size, "vote") %></h4>
       <hr>
       <%= @article.description %>
       <hr>
@@ -15,6 +15,15 @@
           By: <%= link_to @article.user.username, user_path(@article.user) %>,
           <%= time_ago_in_words(@article.created_at) %> ago
         </small>
+        <span class="article-vote">
+          <%= link_to like_article_path(@article), method: :put, class:"btn btn-default btn-xs" do %>
+            <i class="fa fa-thumbs-o-up"></i>
+          <% end %>
+          <%= link_to dislike_article_path(@article), method: :put, class:"btn btn-default btn-xs" do %>
+            <i class="fa fa-thumbs-o-down"></i>
+          <% end %>
+          
+          </span>
       <% if (@article.user_id == current_user.id || current_user.admin?) %>
       <div style="float:right;">
           <%= link_to edit_article_path(@article), class:"btn btn-xs btn-default" do %>

@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :set_article, only: [:edit, :update, :show, :destroy, :upvote, :downvote]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def new
@@ -42,6 +42,16 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:danger] = "This article has been removed"
     redirect_to articles_path
+  end
+  
+  def upvote
+    @article.upvote_by current_user
+    redirect_to article_path(@article)
+  end
+  
+  def downvote
+    @article.downvote_by current_user
+    redirect_to article_path(@article)
   end
   
   private
