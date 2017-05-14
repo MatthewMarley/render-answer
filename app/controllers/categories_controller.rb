@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+    before_action :require_user, except: [:show, :index]
     before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
     
     
@@ -51,8 +52,17 @@ class CategoriesController < ApplicationController
     end
     
     private
+    
+    def require_user
+        if !logged_in?
+            flash[:danger] = "You must be logged in to do this."
+            redirect_to root_path
+        end
+    end
+    
     def category_params
         params.require(:category).permit(:name)
     end
+
     
 end

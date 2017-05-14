@@ -1,39 +1,60 @@
 <div class="container">
   <div class="well user-profile-block">
-  <div class="row">
-        <div class="col-md-3 text-center">
-          <% if !@user.avatar %>
-            <%= image_tag 'pepe.png', class:"avatar-show-img" %>
-          <% else %>
-            <%= image_tag @user.avatar.url, class:"avatar-show-img" %>
-          <% end %>
-          </br>
-          </br>
-          <% if @user == current_user %>
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <% if !@user.avatar %>
+          <%= image_tag 'pepe.png', class:"avatar-show-img" %>
+        <% else %>
+          <%= image_tag @user.avatar.url, class:"avatar-show-img" %>
+        <% end %>
+        </br>
+        </br>
+        <% if logged_in? %>
+          <% if (@user == current_user || current_user.admin?) %>
             <%= link_to 'Edit Profile', edit_user_path(@user) %>
           <% end %>
-          <div class="well white-bg scoreboard">
-            <h4 class="text-center">Scoreboard</h4>
-            <hr class="hr-index">
-            <div class="text-left">
-              <p>Article Count: <%= @user.articles.count %></p>
-              <p>Comment Count: <%= @user.comments.count %></p>
-              <p>Upvote Count: 0</p>
-            </div>
+        <% end %>
+        <div class="well white-bg scoreboard">
+          <h4 class="text-center">Scoreboard</h4>
+          <hr class="hr-index">
+          <div class="text-left">
+            <p>Article Count: <%= @user.articles.count %></p>
+            <p>Comment Count: <%= @user.comments.count %></p>
+            <p>Upvote Count: 0</p>
           </div>
         </div>
-        <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
+        <div class="profile-header">
+          <% if logged_in? %>
+            <% if (current_user.not_friends_with?(@user) && current_user.id != @user.id) %>
+              <div style="float: right;">
+                <%= link_to "Add friend", add_friend_path(friend: @user), 
+                                          class:"btn btn-xs btn-primary btn-add-friend", 
+                                          method: :post %>
+              </div>
+            <% elsif (!current_user.not_friends_with?(@user) && current_user.id != @user.id) %>
+              <div style="float: right;">
+                <%= link_to "Remove friend", friendship_path(@user), 
+                                          class:"btn btn-xs btn-danger btn-add-friend", 
+                                          method: :delete, :data => { :confirm => 'Are you sure?' }%>
+              </div>
+            <% end %>
+          <% end %>
         <h1><%= @user.username %> <span><%= image_tag user_trophy_icon, class: "show-user-trophy-icon" %></span></h1>
-        <hr>
-          <div class="well description-block">
-            <h3>Bio</h3>
+        </div>
+        <hr class="hr-profile">
+        <div class="well description-block">
+          <h3>Bio</h3>
+          <div class="well well-bio">
             <p><%= @user.description %></p>
           </div>
-          <div class="well description-block">
-            <h3>Articles</h3>
-            <% if @user_articles.count >= 1 %>
-              <% @user_articles.each do |article| %>
-                <div class="row">
+        </div>
+        <div class="well description-block">
+          <h3>Articles</h3>
+          <% if @user_articles.count >= 1 %>
+            <% @user_articles.each do |article| %>
+              <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                   <div class="well">
                     <div class="article-title">
@@ -58,13 +79,14 @@
                   </div>
                 </div>
               </div>
-                <% end %>
-            <% else %>
-              <p class="text-center">This user has no articles. </p>
             <% end %>
-          </div>
+          <% else %>
+            <div class="well well-bio">
+              <p class="text-center">This user has no articles. </p>
+            </div>
+          <% end %>
+        </div>
       </div>
-
     </div>
   </div>
 </div>

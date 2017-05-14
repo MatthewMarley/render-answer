@@ -12,6 +12,10 @@ $navbar-default-bg: black;
   border-bottom-left-radius: 4px;
 }
 
+.footer-margin {
+  margin-bottom: 50px;  
+}
+
 .form-group {
   padding-left: 15px;
   padding-right: 15px;
@@ -78,6 +82,12 @@ $navbar-default-bg: black;
 
 .article-meta-details {
   color: black;
+  margin-top: 10px;
+}
+
+.well-bio {
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .navbar-default .navbar-brand {
@@ -86,6 +96,10 @@ $navbar-default-bg: black;
 
 .navbar-default .navbar-nav > li > a {
   color: white;
+}
+
+.no-pag-comments {
+  margin-top: 50px;
 }
 
 .comment-well {
@@ -115,4 +129,18 @@ $navbar-default-bg: black;
 
 .article-vote {
   margin-left: 180px;
+}
+
+.hr-profile {
+  border: 1px solid black;
+  opacity: 0.1;
+  margin-top: 10px;
+}
+
+.profile-header {
+  display: inline;
+}
+
+.btn-add-friend {
+  margin-top: 36px;
 }

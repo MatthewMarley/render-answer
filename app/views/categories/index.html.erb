@@ -3,7 +3,7 @@
         <strong><h1 align="center">Categories Page</h1></strong>
         <p class="text-center">Click on one of the categories to see all related articles</p>
         </br>
-        <% if current_user.admin? %>
+        <% if(logged_in? && current_user.admin?) %>
             <p align="center"><%= link_to "Create a New Category", new_category_path %></p>
         <% end %>
         <% @categories.each do |category| %>
@@ -12,8 +12,8 @@
                 <hr class="hr-index">
                 </br>
                 <p class="text-center"><%= pluralize(category.articles.count, "article") %></p>
-                <% if current_user.admin? %>
-                    <hr class="hr-index" style="margin-top: 20px;">
+                <% if(logged_in? && current_user.admin?) %>
+                    <hr class="hr-profile" style="margin-top: 20px;">
                     <div align="center">
                     <%= link_to "Edit Category", edit_category_path(category), class: 'btn btn-warning btn-xs' %>
                     <%= link_to "Show Category", category_path(category), class: 'btn btn-primary btn-xs' %>
