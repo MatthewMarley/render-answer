@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  
+  before_action :require_user
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   
@@ -47,6 +47,12 @@ class CommentsController < ApplicationController
   end
   
   private
+  def require_user
+    if !logged_in?
+      flash[:danger] = "You must be logged in to do this."
+      redirect_to root_path
+    end
+  end
   
   def require_same_user
     if current_user != @comment.user and !current_user.admin?

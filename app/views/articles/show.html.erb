@@ -1,12 +1,12 @@
 <div class="container">
-<h1 align="center" class="article-title"><%= @article.title %></h1>
+<h1 align="center" class="article-title"><%= @article.title %> - <%= pluralize(@article.get_upvotes.size, "vote") %></h1>
 <div class="col-md-4 col-md-offset-4" style="margin-top: -20px; margin-bottom: 10px;">
   <hr>
 </div>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
-      <h4>Description - <%= pluralize(@article.get_upvotes.size, "vote") %></h4>
+      <h4>Description</h4>
       <hr>
       <%= @article.description %>
       <hr>
@@ -23,18 +23,20 @@
             <i class="fa fa-thumbs-o-down"></i>
           <% end %>
           
-          </span>
-      <% if (@article.user_id == current_user.id || current_user.admin?) %>
-      <div style="float:right;">
-          <%= link_to edit_article_path(@article), class:"btn btn-xs btn-default" do %>
-            <i class="fa fa-edit"></i>
+        </span>
+        <% if logged_in? %>  
+          <% if (@article.user_id == current_user.id || current_user.admin?) %>
+          <div style="float:right;">
+            <%= link_to edit_article_path(@article), class:"btn btn-xs btn-default" do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+            </div>
           <% end %>
-          <%= link_to article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
-            <i class="fa fa-trash-o"></i>
-          <% end %>
-          </div>
         <% end %>
-    </div>
+      </div>
     </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
@@ -51,7 +53,9 @@
     <div align="center" class="paginate-top">
       <%= will_paginate @article_comments %>
     </div>
-    
+    <% if @article.comments.count < 6 %>
+    <div class="no-pag-comments"></div>
+    <% end %>
     <% @article_comments.each do |com| %>
         <div class="well white-bg comment-well">
             <%= com.body %>
@@ -63,15 +67,17 @@
               By: <%= link_to com.user.username, user_path(com.user) %>,
               <%= time_ago_in_words(com.created_at) %> ago
             </small>
-            <% if (com.user_id == current_user.id || current_user.admin?) %>
-            <div style="float:right;">
-                <%= link_to edit_article_comment_path(article_id: @article, id: com.id), class:"btn btn-xs btn-default" do %>
-                  <i class="fa fa-edit"></i>
-                <% end %>
-                <%= link_to article_comment_path(article_id: @article, id: com.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
-                  <i class="fa fa-trash-o"></i>
-                <% end %>
+            <% if logged_in? %>
+              <% if (com.user_id == current_user.id || current_user.admin?) %>
+                <div style="float:right;">
+                  <%= link_to edit_article_comment_path(article_id: @article, id: com.id), class:"btn btn-xs btn-default" do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                  <%= link_to article_comment_path(article_id: @article, id: com.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-xs btn-danger" do %>
+                    <i class="fa fa-trash-o"></i>
+                  <% end %>
                 </div>
+              <% end %>
             <% end %>
           </div>
         </span>
